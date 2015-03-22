@@ -1,60 +1,119 @@
-function randomGrid(){
-  var gridNumber = Math.floor((Math.random() * 16) + 1);
-  setInterval(randomGrid, 1000);
-  firstMove(gridNumber);
+var randomGrid = function(){
+  return Math.floor((Math.random() * 16) + 1);
+};
+
+
+var randomTile = function() {
+  return(Math.floor(Math.random() * 2) + 1) * 2;
+};
+
+
+var Tile = function() {
+  this.gridId = "#" + randomGrid();
+  $(gridId).empty().append(randomTile());
+};
+
+// function newTile() {
+//   $(gridId).empty().append(randomTile());
+//   checkEmpty(gridId);
+// }
+
+console.log(randomGrid());
+
+function firstTwoNumbers() {
+  newTile();
+  newTile();
+
+}
+
+
+function checkEmpty(Id) {
+  if($(Id).text() !== "") {
+    moveTiles(Id);
   }
+  else {
+    alert("empty");
+  }
+}
+
+function moveLeft(Id) {
+  $(Id).insertBefore($(Id).prev());
+}
+
+function checkSameTile(Id) {
+
+}
+
+var tile = new Tile();
+
+checkEmpty(tile.gridId);
 
 
 
-function firstMove(x) {
-  $(document).keydown(function(e) {
-    if ((e.which == 37 )|| (e.which == 38 )|| (e.which == 39 )|| (e.which == 40 )) {
-      alert(x);
-      $(this).off(e);
+function moveTiles(gridId) {
+  $(document).keyup(function(e) {
+    switch(e.which) {
+      case 37:
+        if ((gridId !== "#1") || (gridId !== "#5") || (gridId !== "#9") || (gridId !== "#13")) {
+          moveLeft(Id);
+          // checkSameTile();
+        }
+        break;
+
+      case 38:
+        break;
+
+      case 39: // right
+        break;
+
+      case 40: // down
+        break;
+
+      default: return; // exit this handler for other keys
     }
-
+    newTile();
     e.preventDefault();
   });
 }
 
+moveTiles(tile.gridId);
+
 $(document).ready(function() {
-  randomGrid();
+  firstTwoNumbers();
+  moveTiles();
 
-//   $(document).keydown(function(e) {
-//     switch(e.which) {
-//       case 37:
-//         alert("Left");
 
-//       case 38: // up
-//         break;
+  $(document).keydown(function(e) {
+    console.log(e.which);
+    // switch(e.which) {
 
-//       case 39: // right
-//         break;
+    //   case 37:
+    //     alert("Left");
 
-//       case 40: // down
-//         break;
+    //   case 38: // up
+    //     break;
 
-//       default: return; // exit this handler for other keys
-//     }
-//     e.preventDefault(); // prevent the default action (scroll / move caret)
-//     });
+    //   case 39: // right
+    //     break;
 
-//    $(document).keydown(function(e) {
-//     switch(e.which) {
-//       case 37:
-//         alert("Left");
+    //   case 40: // down
+    //     break;
 
-//       case 38: // up
-//         break;
+    //   default: return; // exit this handler for other keys
+    // }
+    e.preventDefault(); // prevent the default action (scroll / move caret)
+    });
 
-//       case 39: // right
-//         break;
-
-//       case 40: // down
-//         break;
-
-//       default: return; // exit this handler for other keys
-//     }
-//     e.preventDefault(); // prevent the default action (scroll / move caret)
-//     });
   });
+
+
+// var A = function(){
+//   varToBePassed = "something";
+//    B(varToBePassed);
+// };
+
+// var B = function(passedVar){
+//    console.log(passedVar);
+// };
+
+// A();
