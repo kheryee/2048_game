@@ -5,6 +5,7 @@ function randomGrid(){
   }
 
 
+
 function firstMove(x) {
   $(document).keydown(function(e) {
     if ((e.which == 37 )|| (e.which == 38 )|| (e.which == 39 )|| (e.which == 40 )) {
